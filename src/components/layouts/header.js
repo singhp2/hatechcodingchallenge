@@ -4,7 +4,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 
 
-var headerTextStyles = {
+var headerTextStyles = { //Styling for Material UI AppBar
     color: "#ecf0f1",
 }
 
@@ -13,7 +13,7 @@ function Header() {
 <AppBar position="static" color="primary">
  <Toolbar> 
      <Typography variant="title" style={headerTextStyles}>
-     Coding Challenge
+     Coding Challenge [Larry Singh]
      </Typography>
  </Toolbar>
 </AppBar>

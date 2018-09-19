@@ -6,32 +6,30 @@ import Grid from '@material-ui/core/Grid';
 import Badge from '@material-ui/core/Badge';
 import Button from '@material-ui/core/Button';
 
-var paperStyle = {
+var paperStyle = { //Styling for Material-UI paper
     background: "#ecf0f1",
     padding: "20px",
     margin: "20px"
   };
 
-var badgeStyle = {
+var badgeStyle = { //Styling for Material-UI badges
     padding: "5px",
 }
 
 export default class PostList extends React.Component {
-    state = {
+    state = { //Initalize state for posts and comments
         posts: [],
         comments: []
     };
-    click = this.click.bind(this);
+    
+    click = this.click.bind(this); //To allow button to run click function
 
-    click() {
-
-        axios.get(`https://jsonplaceholder.typicode.com/posts`)
+    click() { //Function to get data from jsonplaceholder api
+        axios.get(`https://jsonplaceholder.typicode.com/posts`) //Axios get call to retrive posts, console log the result, and then set posts state with the result data
         .then(result => {console.log(result); this.setState({posts: result.data})})
 
-        axios.get(`https://jsonplaceholder.typicode.com/comments`)
-        .then(result => {console.log(result); this.setState({comments: result.data})})
-
-        
+        axios.get(`https://jsonplaceholder.typicode.com/comments`) //Axios get call to retrive comments, console log the result, and then set comments state with the result data
+        .then(result => {console.log(result); this.setState({comments: result.data})})  
     }
 
     
@@ -39,14 +37,11 @@ export default class PostList extends React.Component {
 render() {
     return (
         <div>
-    <Grid container justify="center" style={{paddingTop: 10}} spacing={24}>
-        
-    </Grid>
     <Grid container justify="center" style={{paddingTop: 30, textAlign: "center"}} spacing={24}>
         <Grid item xs={6}>
         <Paper style={paperStyle}>
         <Typography variant="headline" component="h4">This is a simple application created with React</Typography>
-        <Typography component="p">On click of the button, this application will make an API call using Axios. The API will return user posts, and comments. The user posts will be displayed on the left side, and the user comments will be displayed on the right side</Typography>
+        <Typography component="p">On click of the button, this application will make an API call using the Axios Get Method. The API will return user posts, and comments. The user posts will be displayed on the left side, and the user comments will be displayed on the right side. The posts comments will have a badge to identify which comments go with which post.</Typography>
         </Paper>
         </Grid>
         <Grid item justify="center" xs={12}>
@@ -60,7 +55,7 @@ render() {
         <Typography style={{paddingLeft: 18}} variant="display1" gutterBottom>
         Posts
         </Typography>
-                {this.state.posts.map(posts => 
+                {this.state.posts.map(posts => //Map posts from state to display posts
                 <Paper style={paperStyle}>
                     <Badge style={badgeStyle} color="secondary" badgeContent={posts.id}/>
                         <Typography variant="headline" component="h3">{posts.title}</Typography>
@@ -72,7 +67,7 @@ render() {
         <Typography style={{paddingLeft: 18}} variant="display1" gutterBottom>
         Comments
         </Typography>
-                {this.state.comments.map((comments, index) => 
+                {this.state.comments.map((comments, index) => //Map comments from state to display comments
                 <Paper style={paperStyle}>
                     <Badge style={badgeStyle} color="primary" badgeContent={comments.postId}/>
                     <Typography component="h4">{comments.name}</Typography>
