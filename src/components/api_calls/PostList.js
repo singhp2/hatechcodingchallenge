@@ -44,8 +44,9 @@ render() {
     </Grid>
     <Grid container justify="center" style={{paddingTop: 30, textAlign: "center"}} spacing={24}>
         <Grid item xs={6}>
-        <Paper style={paperStyle}>Test
-        
+        <Paper style={paperStyle}>
+        <Typography variant="headline" component="h4">This is a simple application created with React</Typography>
+        <Typography component="p">On click of the button, this application will make an API call using Axios. The API will return user posts, and comments. The user posts will be displayed on the left side, and the user comments will be displayed on the right side</Typography>
         </Paper>
         </Grid>
         <Grid item justify="center" xs={12}>
