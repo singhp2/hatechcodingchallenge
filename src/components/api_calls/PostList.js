@@ -5,8 +5,18 @@ import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Badge from '@material-ui/core/Badge';
 import Button from '@material-ui/core/Button';
+import Card from '@material-ui/core/Card';
+import CardHeader from '@material-ui/core/CardHeader';
+import CardContent from '@material-ui/core/CardContent';
+import Avatar from '@material-ui/core/Avatar';
 
 var paperStyle = { //Styling for Material-UI paper
+    background: "#ecf0f1",
+    padding: "20px",
+    margin: "20px"
+  };
+
+var cardStyle = { //Styling for Material-UI card
     background: "#ecf0f1",
     padding: "20px",
     margin: "20px"
@@ -68,10 +78,18 @@ render() {
         Comments
         </Typography>
                 {this.state.comments.map((comments, index) => //Map comments from state to display comments
-                <Paper style={paperStyle}>
-                    <Badge style={badgeStyle} color="primary" badgeContent={comments.postId}/>
-                    <Typography component="h4">{comments.name}</Typography>
-                </Paper>
+                
+                <Card style={cardStyle}>
+                
+                    <CardHeader
+                        avatar={<Avatar style={{backgroundColor: "#3f51b5"}}>{comments.postId}</Avatar>}
+                        title={comments.name}
+                        subheader={comments.email}
+                    />
+                <CardContent>
+                    <Typography component="h4">{comments.body}</Typography>
+                </CardContent>
+                </Card>
                 )}
         </Grid>
     </Grid>
